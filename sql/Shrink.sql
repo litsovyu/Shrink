@@ -1,0 +1,1 @@
+DBCC SHRINKDATABASE("$DB_NAME")   --не факт что это сработает
