@@ -1,4 +1,4 @@
-FROM alpine
+FROM  fabiang/sqlcmd
 # заменить на образ с sqlcmd или MSSQL-Scripter
 
 WORKDIR /app
