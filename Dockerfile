@@ -1,16 +1,10 @@
 FROM  fabiang/sqlcmd
-# заменить на образ с sqlcmd или MSSQL-Scripter
 
 WORKDIR /app
 
-# Copy application dependency manifests to the container image.
-# Copying this separately prevents re-running npm install on every code change.
-COPY ./sh ./sh 
-COPY ./sql ./sql
+ENV DB_HOST="host_name_31"
+ENV DB_USER="user_name_31"
+ENV DB_PASS="pass_name_31"
+ENV DB_NAME="name_name_31"
 
-# Run the web service on container startup.
-CMD [ "./sh/run_Shrink.sh" ]
-
-# or
-
-# CMD [ "sh -c /opt/mssql-tools/bin/sqlcmd  -S $DB_HOST -U $DB_USER -P $DB_PASS -Q "DBCC SHRINKDATABASE($DB_NAME)" -o "./result/Shrink.txt"" ]
+CMD [ "sh", "-c", "/opt/mssql-tools/bin/sqlcmd", "-S", "${DB_HOST}", "-U", "${DB_USER}", "-P", "${DB_PASS}", "-Q", "DBCC SHRINKDATABASE(\"${DB_NAME}\")" ]
